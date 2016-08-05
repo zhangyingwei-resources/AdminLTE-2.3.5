@@ -1,0 +1,18 @@
+<script type="text/x-template" id="menu-template">
+    <li class="header" v-if="hasTitle" >{{model.title}}</li>
+    <li @click="toggle" v-if="!isFolder" ><a href="#"><i class="fa fa-link"></i> <span>{{model.name}}</span></a></li>
+    <li class="treeview" v-if="isFolder">
+      <a href="#"><i class="fa fa-link"></i> <span>{{model.name}}</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+        <item
+          class="item"
+          v-for="model in model.children"
+          :model="model">
+        </item>
+      </ul>
+    </li>
+</script>

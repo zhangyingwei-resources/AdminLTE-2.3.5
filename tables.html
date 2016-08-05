@@ -7,14 +7,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Starter</title>
+  <title>table</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 
   <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="plugins/bootstrap-table/bootstrap-table.css">
   <!-- Font Awesome
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">-->
   <!-- Ionicons
@@ -208,21 +208,48 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Main content -->
     <section class="content">
-
       <!-- Your Page Content Here -->
       <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">Data Table With Full Features</h3>
-        </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <table id="example2" class="table table-bordered table-hover">
+    <div id="toolbar" >
+        <div class="form-inline" >
+          <div class="input-group">
+            <select class="form-control">
+              <option value="-1" selected="selected">全部</option>
+              <option value="0">待审核</option>
+              <option value="1">合法</option>
+              <option value="2">非法</option>
+            </select>
+            <a type="button" class="btn btn-default input-group-addon">查询</a>
+          </div>
 
-          </table>
+          <button type="button" class="btn btn-default">
+              一键审核
+          </button>
+        </div>
+
+
+    </div>
+    <table id="eventsTable" class="table table-striped"
+      data-toolbar=".toolbar"
+      data-query-params="queryParams"
+      data-pagination="true" >
+        <thead>
+        <tr>
+            <th data-field="name">Name</th>
+            <th data-field="stargazers_count">Stars</th>
+            <th data-field="forks_count">Forks</th>
+            <th data-field="description">Description</th>
+            <th>action</th>
+        </tr>
+        </thead>
+    </table>
         </div>
         <!-- /.box-body -->
       </div>
       <!-- /.box -->
+
     </section>
     <!-- /.content -->
   </div>
@@ -276,8 +303,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Bootstrap 3.3.6 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
 
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="plugins/bootstrap-table/bootstrap-table.js"></script>
 <script src="plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
@@ -288,46 +314,94 @@ scratch. This page gets rid of all links and provides the needed markup only.
      fixed layout. -->
  <script>
    $(function () {
-     var data = new Array();
-     for(var i = 0;i<1000;i++){
-      data.push({"engine": "Trident","browser":  "Internet Explorer 4.0","platform": "Win 95+","version":  i,"grade":    "X"});
-     }
-       var oTable =  $('#example2').DataTable({
-       "paging": true,
-       "lengthChange": false,
-       "pageLength": 5,
-       "searching": true,
-       "ordering": false,
-       "info": true,
-       "autoWidth": false,
-       "data": data,
-  		 "columns": [
-  		     { "title":"aaa","data":"engine" },
-           { "title":"bbb","data":"browser"},
-           {
-             "title":"ccc" ,"data":"platform"
-           },
-           {
-             "title":"ddd","data":"version",
-             "orderDataType": "dom-select"
-           },
-           {
-             "title":"eee","data":"grade",
-             "defaultContent": "Edit",
-             "render": function(){}
-           },{
-             "title":"操作",
-             "data":function(){return "button"},
+     var data = [
+    {
+        "name": "bootstrap-table",
+        "stargazers_count": "526",
+        "forks_count": "122",
+        "description": "An extended Bootstrap table with radio, checkbox, sort, pagination, and other added features. (supports twitter bootstrap v2 and v3) "
+    },
+    {
+        "name": "multiple-select",
+        "stargazers_count": "288",
+        "forks_count": "150",
+        "description": "A jQuery plugin to select multiple elements with checkboxes :)"
+    },
+    {
+        "name": "bootstrap-show-password",
+        "stargazers_count": "32",
+        "forks_count": "11",
+        "description": "Show/hide password plugin for twitter bootstrap."
+    },
+    {
+        "name": "blog",
+        "stargazers_count": "13",
+        "forks_count": "4",
+        "description": "my blog"
+    },
+    {
+        "name": "bootstrap-table",
+        "stargazers_count": "526",
+        "forks_count": "122",
+        "description": "An extended Bootstrap table with radio, checkbox, sort, pagination, and other added features. (supports twitter bootstrap v2 and v3) "
+    },
+    {
+        "name": "multiple-select",
+        "stargazers_count": "288",
+        "forks_count": "150",
+        "description": "A jQuery plugin to select multiple elements with checkboxes :)"
+    },
+    {
+        "name": "bootstrap-show-password",
+        "stargazers_count": "32",
+        "forks_count": "11",
+        "description": "Show/hide password plugin for twitter bootstrap."
+    },
+    {
+        "name": "blog",
+        "stargazers_count": "13",
+        "forks_count": "4",
+        "description": "my blog"
+    },
+    {
+        "name": "bootstrap-table",
+        "stargazers_count": "526",
+        "forks_count": "122",
+        "description": "An extended Bootstrap table with radio, checkbox, sort, pagination, and other added features. (supports twitter bootstrap v2 and v3) "
+    },
+    {
+        "name": "multiple-select",
+        "stargazers_count": "288",
+        "forks_count": "150",
+        "description": "A jQuery plugin to select multiple elements with checkboxes :)"
+    },
+    {
+        "name": "bootstrap-show-password",
+        "stargazers_count": "32",
+        "forks_count": "11",
+        "description": "Show/hide password plugin for twitter bootstrap."
+    },
+    {
+        "name": "blog",
+        "stargazers_count": "13",
+        "forks_count": "4",
+        "description": "my blog"
+    },
+    {
+        "name": "scutech-redmine",
+        "stargazers_count": "6",
+        "forks_count": "3",
+        "description": "Redmine notification tools for chrome extension."
+    }
+];
 
-           }
-         ]
-     });
-
-     oTable.$('td').click( function () {
-       var sData = oTable.fnGetData(this);
-       console.log(sData);
-     });
-
+    $('#eventsTable').bootstrapTable({
+        data: data,
+        refresh:true,
+        formatter:function(){
+          return "aaaaa";
+        }
+    });
    });
  </script>
 </body>
